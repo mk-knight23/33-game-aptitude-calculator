@@ -1,108 +1,98 @@
-# 🚀 33-game-aptitude-nexus (Collective Production Edition)
+# Aptitude Nexus
 
-## 💎 Overview
-Fully production-grade implementation of 33-game-aptitude-nexus, refactored by the **69-Agent Opencode Collective**.
+A fast, browser-based math and aptitude quiz game. Pick a category and a game
+mode, answer against a countdown, build a streak, then review what you got
+wrong. Includes a scientific calculator for working problems out by hand.
 
-## 🛡️ Trust & Compliance
-- **CI/CD**: Automated GitHub Actions with Gitleaks security scans.
-- **Security**: Standardized [SECURITY.md](SECURITY.md) protocol.
-- **Design**: Opencode Premium Design Tokens integrated.
+## Game modes
 
-## 🏁 48-Hour Roadmap
-1. Initialize infrastructure via `.github/workflows`.
-2. Set your secrets in GitHub Environment settings.
-3. Deploy to production via Vercel/Docker.
+- **Practice** — answer at your own pace, no run-ending pressure. Each question
+  still has a 30s countdown.
+- **Sprint** — 60 seconds on the clock; answer as many as you can.
+- **Survival** — 3 lives; every wrong answer (or timeout) costs one. Run ends at
+  zero lives.
 
-![Evolution](https://img.shields.io/badge/Evolution-Live-brightgreen)
-![Phase 2](https://img.shields.io/badge/Phase-2-blue)
-![Score](https://img.shields.io/badge/Score-100%2F100-gold)
+All modes track a live **streak counter**, a per-question countdown, and end on
+a **review-wrong-answers** screen with explanations.
 
-Part of the **60-Repo Evolution Project**.
+## Categories
 
-## 📋 Evolution Status
+Questions span seven categories, each with easy / medium / hard tiers:
 
-| Phase | Status | Repos |
-|-------|--------|-------|
-| Phase 1 | ✅ Complete | 01-20 |
-| Phase 2 | 🔄 Active | 21-40 |
-| Phase 3 | ⏳ Pending | 41-60 |
+`Mathematics` · `Arithmetic` · `Algebra` · `Logic & Series` · `Speed Math` ·
+`Logic` · `Verbal` — plus a **Mixed** option that samples across all of them.
 
-## 🛠️ Tech Stack
+## Tech stack
 
-- **Framework:** Modern stack
-- **CI/CD:** 24/7 Continuous Evolution
-- **Deployment:** Multi-platform
+- React 18 + Vite 6
+- Tailwind CSS 4
+- Zustand (state, with `persist` to localStorage)
+- Framer Motion (animation)
+- mathjs (calculator)
+- Vitest + Testing Library (tests)
 
-## 📦 What's Included
-
-- ✅ Professional README
-- ✅ Complete EVOLUTION.md
-- ✅ 5 LinkedIn posts
-- ✅ 2 video scripts  
-- ✅ Podcast script
-- ✅ Architecture docs
-- ✅ API documentation
-- ✅ GitHub Actions workflow
-- ✅ Multi-platform deployment configs
-
-## 🚀 Quick Start
+## Run, build, test
 
 ```bash
-git clone https://github.com/mk-knight23/33-game-aptitude-nexus.git
-cd 33-game-aptitude-nexus
-npm install
-npm run dev
+npm install        # install dependencies
+npm run dev        # start the dev server (http://localhost:5173)
+npm run build      # production build to dist/
+npm run preview    # preview the production build
+npm test           # run the test suite once
+npm run test:watch # run tests in watch mode
+npx tsc --noEmit   # type-check
 ```
 
-## 📊 Evolution Metrics
-
-| Metric | Score |
-|--------|-------|
-| Documentation | 20/20 |
-| CI/CD | 20/20 |
-| Deployment | 20/20 |
-| Code Quality | 20/20 |
-| Security | 20/20 |
-| **Total** | **100/100** |
-
-## 🌐 Live URLs
-
-| Platform | URL |
-|----------|-----|
-| Vercel | https://33-game-aptitude-nexus.vercel.app |
-| Netlify | https://33-game-aptitude-nexus.netlify.app |
-| Firebase | https://33-game-aptitude-nexus.web.app |
-
-## 📁 Structure
+## Project layout
 
 ```
-├── .github/workflows/     # CI/CD workflows
-├── marketing/             # Marketing content
-│   ├── linkedin/         # 5 LinkedIn posts
-│   ├── videos/           # 2 video scripts
-│   └── audio/            # Podcast script
-├── docs/                 # Documentation
-│   ├── architecture/     # System design
-│   └── api/              # API docs
-├── vercel.json           # Vercel config
-├── netlify.toml          # Netlify config
-├── firebase.json         # Firebase config
-├── README.md             # This file
-└── EVOLUTION.md          # Evolution history
+src/
+  components/
+    calculator/      # mathjs-backed scientific calculator
+    test/            # TestEngine (quiz runner) + ReviewView
+    Dashboard.tsx    # mode + category selection, history
+    ResultsView.tsx  # post-test results
+  data/questions.ts  # question bank
+  stores/aptiStore.ts# Zustand store (quiz state + stats)
+  utils/scoring.ts   # pure scoring / streak / lives logic (unit-tested)
+  pages/             # routed pages (Game, Stats, Achievements)
+  router/            # router with React.lazy code-splitting
+  types/apti.ts      # shared types
 ```
 
-## 📄 License
+## Architecture notes
 
-MIT License
+- Routes are lazy-loaded with `React.lazy` + `Suspense`, and heavy vendor
+  libraries (`mathjs`, `framer-motion`, React) are split into their own chunks
+  via Vite `manualChunks`, so the initial bundle stays small.
+- Game logic lives in pure functions in `src/utils/scoring.ts` (scoring, answer
+  validation, streak, lives) and is covered directly by unit tests; the store
+  composes those functions.
 
----
+## Testing
 
-🦾 **Evolved with OpenClaw** | 2026-03-06
+Tests run on Vitest with a jsdom environment:
 
-## Security
+- `src/utils/scoring.test.ts` — scoring, answer validation, streak, lives, result building
+- `src/stores/aptiStore.test.ts` — start/answer/finish flow, survival lives, stats
+- `src/data/questions.test.ts` — question-bank integrity (unique ids, valid answer indices, category/difficulty coverage)
 
-This project follows security best practices:
-- No hardcoded credentials
-- Dependency scanning enabled
-- Security headers configured
-- Regular security audits performed
+CI (`.github/workflows/ci.yml`) runs type-check, tests, build, and a security
+audit on push and pull request.
+
+## Deploy
+
+The build is a fully static SPA in `dist/` (`base: './'`), deployable to any
+static host (Vercel, Netlify, GitHub Pages, etc.):
+
+```bash
+npm run build
+# then serve dist/ — e.g. on Vercel: framework "Vite", output "dist"
+```
+
+For client-side routing on static hosts, configure a catch-all rewrite to
+`index.html`.
+
+## License
+
+MIT
