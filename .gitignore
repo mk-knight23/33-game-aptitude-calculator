@@ -33,3 +33,5 @@ _backup/
 # Claude
 .claude/
 .vercel
+node_modules
+dist
