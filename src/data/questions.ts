@@ -365,5 +365,392 @@ export const QUESTIONS: Question[] = [
     options: ['is', 'are', 'was', 'has been'],
     correctAnswer: 1,
     difficulty: 'hard'
+  },
+
+  // ============ ARITHMETIC QUESTIONS ============
+  {
+    id: 'a1',
+    category: 'arithmetic',
+    text: 'What is 47 + 38?',
+    options: ['75', '83', '85', '95'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: '47 + 38 = 85.'
+  },
+  {
+    id: 'a2',
+    category: 'arithmetic',
+    text: 'What is 144 ÷ 12?',
+    options: ['10', '11', '12', '14'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: '12 × 12 = 144, so 144 ÷ 12 = 12.'
+  },
+  {
+    id: 'a3',
+    category: 'arithmetic',
+    text: 'What is 25% of 240?',
+    options: ['50', '60', '70', '80'],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    explanation: '25% = 1/4, and 240 / 4 = 60.'
+  },
+  {
+    id: 'a4',
+    category: 'arithmetic',
+    text: 'A jacket costs Rs. 1200 after a 20% discount. What was the original price?',
+    options: ['Rs. 1440', 'Rs. 1500', 'Rs. 1600', 'Rs. 1800'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: 'Rs. 1200 is 80% of the original, so original = 1200 / 0.8 = Rs. 1500.'
+  },
+  {
+    id: 'a5',
+    category: 'arithmetic',
+    text: 'What is the average of 12, 18, 24, and 30?',
+    options: ['20', '21', '22', '24'],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    explanation: 'Sum = 84, count = 4, average = 84 / 4 = 21.'
+  },
+  {
+    id: 'a6',
+    category: 'arithmetic',
+    text: 'If a book costs Rs. 60 and is sold for Rs. 75, what is the profit percentage?',
+    options: ['20%', '25%', '30%', '15%'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: 'Profit = 15 on cost 60, so 15/60 = 25%.'
+  },
+  {
+    id: 'a7',
+    category: 'arithmetic',
+    text: 'What is the simple interest on Rs. 5000 at 8% per annum for 3 years?',
+    options: ['Rs. 1000', 'Rs. 1200', 'Rs. 1500', 'Rs. 2000'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: 'SI = (5000 × 8 × 3) / 100 = Rs. 1200.'
+  },
+  {
+    id: 'a8',
+    category: 'arithmetic',
+    text: 'A sum doubles in 8 years at simple interest. What is the annual rate?',
+    options: ['10%', '12.5%', '15%', '20%'],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    explanation: 'To double, SI must equal the principal: rate = 100 / 8 = 12.5%.'
+  },
+  {
+    id: 'a9',
+    category: 'arithmetic',
+    text: 'What is 7/8 expressed as a decimal?',
+    options: ['0.785', '0.875', '0.825', '0.78'],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    explanation: '7 ÷ 8 = 0.875.'
+  },
+  {
+    id: 'a10',
+    category: 'arithmetic',
+    text: 'If 5 workers build a wall in 12 days, how many days for 6 workers (same rate)?',
+    options: ['8', '10', '11', '14'],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    explanation: 'Work = 5 × 12 = 60 worker-days; 60 / 6 = 10 days.'
+  },
+
+  // ============ ALGEBRA QUESTIONS ============
+  {
+    id: 'al1',
+    category: 'algebra',
+    text: 'Solve for x: 2x + 5 = 17',
+    options: ['4', '5', '6', '7'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: '2x = 12, so x = 6.'
+  },
+  {
+    id: 'al2',
+    category: 'algebra',
+    text: 'If 3x − 7 = 2x + 4, what is x?',
+    options: ['9', '10', '11', '12'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: '3x − 2x = 4 + 7, so x = 11.'
+  },
+  {
+    id: 'al3',
+    category: 'algebra',
+    text: 'Expand (x + 3)(x − 2).',
+    options: ['x² + x − 6', 'x² − x − 6', 'x² + 5x − 6', 'x² + x + 6'],
+    correctAnswer: 0,
+    difficulty: 'medium',
+    explanation: 'x² − 2x + 3x − 6 = x² + x − 6.'
+  },
+  {
+    id: 'al4',
+    category: 'algebra',
+    text: 'What are the roots of x² − 5x + 6 = 0?',
+    options: ['1 and 6', '2 and 3', '−2 and −3', '1 and 5'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: '(x − 2)(x − 3) = 0, so x = 2 or 3.'
+  },
+  {
+    id: 'al5',
+    category: 'algebra',
+    text: 'If f(x) = 2x² − 3x + 1, what is f(2)?',
+    options: ['1', '3', '5', '7'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: '2(4) − 3(2) + 1 = 8 − 6 + 1 = 3.'
+  },
+  {
+    id: 'al6',
+    category: 'algebra',
+    text: 'Solve the system: x + y = 10, x − y = 4. What is x?',
+    options: ['5', '6', '7', '8'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: 'Adding: 2x = 14, so x = 7.'
+  },
+  {
+    id: 'al7',
+    category: 'algebra',
+    text: 'Simplify: (x³ · x⁴) / x²',
+    options: ['x⁵', 'x⁶', 'x⁷', 'x⁹'],
+    correctAnswer: 0,
+    difficulty: 'easy',
+    explanation: 'x^(3+4−2) = x⁵.'
+  },
+  {
+    id: 'al8',
+    category: 'algebra',
+    text: 'If a = 3 and b = −2, evaluate a² + 2ab + b².',
+    options: ['1', '4', '9', '25'],
+    correctAnswer: 0,
+    difficulty: 'hard',
+    explanation: '(a + b)² = (3 − 2)² = 1.'
+  },
+  {
+    id: 'al9',
+    category: 'algebra',
+    text: 'For what value of k does x² + kx + 9 have equal roots?',
+    options: ['±3', '±6', '±9', '±12'],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    explanation: 'Discriminant k² − 36 = 0, so k = ±6.'
+  },
+  {
+    id: 'al10',
+    category: 'algebra',
+    text: 'Solve for x: x/3 + x/6 = 5',
+    options: ['6', '8', '10', '12'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: '(2x + x)/6 = 5, so 3x = 30, x = 10.'
+  },
+
+  // ============ SERIES / SEQUENCE QUESTIONS ============
+  {
+    id: 's1',
+    category: 'series',
+    text: 'Find the next term: 3, 6, 12, 24, ...',
+    options: ['36', '42', '48', '54'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: 'Each term doubles: 24 × 2 = 48.'
+  },
+  {
+    id: 's2',
+    category: 'series',
+    text: 'Find the next term: 1, 4, 9, 16, 25, ...',
+    options: ['30', '32', '36', '49'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: 'Perfect squares: 6² = 36.'
+  },
+  {
+    id: 's3',
+    category: 'series',
+    text: 'Find the missing term: 2, 6, 18, __, 162',
+    options: ['36', '48', '54', '72'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: 'Multiply by 3 each time: 18 × 3 = 54.'
+  },
+  {
+    id: 's4',
+    category: 'series',
+    text: 'Find the next term: 5, 11, 23, 47, ...',
+    options: ['71', '83', '95', '99'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: 'Each term = 2 × previous + 1: 47 × 2 + 1 = 95.'
+  },
+  {
+    id: 's5',
+    category: 'series',
+    text: 'Find the next term: 1, 2, 6, 24, 120, ...',
+    options: ['600', '720', '840', '960'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: 'Factorials: 120 × 6 = 720.'
+  },
+  {
+    id: 's6',
+    category: 'series',
+    text: 'Find the next letter pair: AB, DE, GH, JK, ...',
+    options: ['LM', 'MN', 'NO', 'KL'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: 'Skip one letter each step: after JK comes MN.'
+  },
+  {
+    id: 's7',
+    category: 'series',
+    text: 'Find the next term: 7, 10, 16, 28, ...',
+    options: ['44', '48', '52', '56'],
+    correctAnswer: 2,
+    difficulty: 'hard',
+    explanation: 'Differences double: +3, +6, +12, +24 → 28 + 24 = 52.'
+  },
+  {
+    id: 's8',
+    category: 'series',
+    text: 'Find the odd term: 4, 9, 16, 24, 36',
+    options: ['9', '16', '24', '36'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: 'All are perfect squares except 24.'
+  },
+  {
+    id: 's9',
+    category: 'series',
+    text: 'Find the next term: 100, 50, 25, 12.5, ...',
+    options: ['5', '6', '6.25', '8'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: 'Halving each time: 12.5 / 2 = 6.25.'
+  },
+  {
+    id: 's10',
+    category: 'series',
+    text: 'Find the next term: 2, 3, 5, 7, 11, 13, ...',
+    options: ['15', '16', '17', '19'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: 'Prime numbers: the next prime after 13 is 17.'
+  },
+
+  // ============ SPEED-MATH QUESTIONS ============
+  {
+    id: 'sp1',
+    category: 'speed',
+    text: 'Quick! 9 × 7 = ?',
+    options: ['56', '63', '64', '72'],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    explanation: '9 × 7 = 63.'
+  },
+  {
+    id: 'sp2',
+    category: 'speed',
+    text: 'Quick! 15 × 4 = ?',
+    options: ['45', '50', '60', '65'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: '15 × 4 = 60.'
+  },
+  {
+    id: 'sp3',
+    category: 'speed',
+    text: 'Quick! 12² = ?',
+    options: ['124', '132', '144', '154'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: '12 × 12 = 144.'
+  },
+  {
+    id: 'sp4',
+    category: 'speed',
+    text: 'Quick! 96 + 47 = ?',
+    options: ['133', '141', '143', '153'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: '96 + 47 = 143.'
+  },
+  {
+    id: 'sp5',
+    category: 'speed',
+    text: 'Quick! 200 − 67 = ?',
+    options: ['123', '133', '143', '147'],
+    correctAnswer: 1,
+    difficulty: 'easy',
+    explanation: '200 − 67 = 133.'
+  },
+  {
+    id: 'sp6',
+    category: 'speed',
+    text: 'Quick! 25 × 16 = ?',
+    options: ['350', '400', '450', '500'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    explanation: '25 × 16 = 25 × 4 × 4 = 400.'
+  },
+  {
+    id: 'sp7',
+    category: 'speed',
+    text: 'Quick! 13 × 13 = ?',
+    options: ['149', '156', '169', '179'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: '13 × 13 = 169.'
+  },
+  {
+    id: 'sp8',
+    category: 'speed',
+    text: 'Quick! 1000 ÷ 8 = ?',
+    options: ['115', '120', '125', '130'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: '1000 / 8 = 125.'
+  },
+  {
+    id: 'sp9',
+    category: 'speed',
+    text: 'Quick! 17 + 28 + 35 = ?',
+    options: ['70', '78', '80', '82'],
+    correctAnswer: 2,
+    difficulty: 'medium',
+    explanation: '17 + 28 + 35 = 80.'
+  },
+  {
+    id: 'sp10',
+    category: 'speed',
+    text: 'Quick! Half of 246 = ?',
+    options: ['113', '121', '123', '128'],
+    correctAnswer: 2,
+    difficulty: 'easy',
+    explanation: '246 / 2 = 123.'
+  },
+  {
+    id: 'sp11',
+    category: 'speed',
+    text: 'Quick! 48 × 25 = ?',
+    options: ['1100', '1200', '1240', '1250'],
+    correctAnswer: 1,
+    difficulty: 'hard',
+    explanation: '48 × 25 = 48 × 100 / 4 = 1200.'
+  },
+  {
+    id: 'sp12',
+    category: 'speed',
+    text: 'Quick! 7 × 8 × 5 = ?',
+    options: ['260', '270', '280', '290'],
+    correctAnswer: 2,
+    difficulty: 'hard',
+    explanation: '7 × 8 = 56, 56 × 5 = 280.'
   }
 ]
+

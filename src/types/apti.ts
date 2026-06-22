@@ -1,4 +1,15 @@
-export type TestCategory = 'math' | 'logic' | 'verbal'
+export type TestCategory =
+  | 'math'
+  | 'logic'
+  | 'verbal'
+  | 'arithmetic'
+  | 'algebra'
+  | 'series'
+  | 'speed'
+
+export type Difficulty = 'easy' | 'medium' | 'hard'
+
+export type GameMode = 'standard' | 'sprint' | 'survival'
 
 export interface Question {
   id: string
@@ -6,7 +17,13 @@ export interface Question {
   text: string
   options: string[]
   correctAnswer: number
-  difficulty: 'easy' | 'medium' | 'hard'
+  difficulty: Difficulty
+  explanation?: string
+}
+
+export interface WrongAnswer {
+  question: Question
+  selected: number | null
 }
 
 export interface TestResult {
@@ -16,17 +33,31 @@ export interface TestResult {
   totalQuestions: number
   category: TestCategory | 'mixed'
   timeSpent: number
+  mode: GameMode
+  bestStreak: number
+}
+
+export interface ActiveTest {
+  questions: Question[]
+  currentIndex: number
+  answers: Record<string, number>
+  startTime: number
+  category: TestCategory | 'mixed'
+  mode: GameMode
+  streak: number
+  bestStreak: number
+  lives: number
+  status: 'active' | 'finished'
 }
 
 export interface AptiState {
-  view: 'calculator' | 'test' | 'results' | 'history'
+  view: 'calculator' | 'test' | 'results' | 'history' | 'review'
   isDarkMode: boolean
-  currentTest: {
-    questions: Question[]
-    currentIndex: number
-    answers: Record<string, number>
-    startTime: number
-    category: TestCategory | 'mixed'
-  } | null
+  currentTest: ActiveTest | null
+  lastWrong: WrongAnswer[]
   history: TestResult[]
+  // Consolidated from former gameStore — generic score tracking for Stats page
+  scores: number[]
+  gamesPlayed: number
+  highScore: number
 }
