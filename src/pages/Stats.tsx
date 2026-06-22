@@ -1,8 +1,7 @@
-import { useGameStore } from '@/stores/gameStore';
-import { BarChart3, TrendingUp, Target } from 'lucide-react';
+import { useAptiStore } from '@/stores/aptiStore';
 
 export default function Stats() {
-  const { scores, gamesPlayed, highScore } = useGameStore();
+  const { scores, gamesPlayed, highScore } = useAptiStore();
   const avgScore = scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
 
   return (
@@ -28,7 +27,7 @@ export default function Stats() {
           <div className="space-y-2">
             {scores.slice(-10).reverse().map((score, i) => (
               <div key={i} className="flex justify-between p-2 bg-white/5 rounded">
-                <span>Game #{scores.length - scores.length + i + 1}</span>
+                <span>Game #{scores.length - i}</span>
                 <span className="font-bold">{score}</span>
               </div>
             ))}
