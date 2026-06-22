@@ -117,7 +117,7 @@ export function ResultsView() {
               />
             </svg>
             <div className="text-center">
-              <span className="text-5xl font-display font-black text-apti-primary">{percentage}%</span>
+              <span className="text-5xl font-mono font-bold text-nexus-primary neon-text">{percentage}%</span>
               <p className={`text-xs font-bold uppercase ${metrics.levelColor} mt-1`}>{metrics.level}</p>
             </div>
           </div>
@@ -148,10 +148,10 @@ export function ResultsView() {
         </div>
 
         <div>
-          <h2 className="text-4xl font-display font-black mb-2">
+          <h2 className="text-4xl font-display font-black mb-2 text-nexus-text neon-text">
             {isPersonalBest ? 'New Record!' : 'Results Are In!'}
           </h2>
-          <p className="text-slate-500 font-medium">
+          <p className="text-slate-400 font-medium">
             You got {latest.score} right out of {latest.totalQuestions}.
             {masteryStats.totalTests > 1 && (
               <span className="block text-xs mt-1 opacity-75">
@@ -166,13 +166,13 @@ export function ResultsView() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="glass p-5 rounded-3xl">
           <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Correct</p>
-          <div className="flex items-center justify-center gap-2 text-emerald-600 font-black text-2xl">
+          <div className="flex items-center justify-center gap-2 text-nexus-success font-black text-2xl font-mono">
             <CheckCircle2 size={18} /> {latest.score}
           </div>
         </div>
         <div className="glass p-5 rounded-3xl">
           <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Incorrect</p>
-          <div className="flex items-center justify-center gap-2 text-red-500 font-black text-2xl">
+          <div className="flex items-center justify-center gap-2 text-rose-400 font-black text-2xl font-mono">
             <XCircle size={18} /> {latest.totalQuestions - latest.score}
           </div>
         </div>
@@ -253,13 +253,13 @@ export function ResultsView() {
       <div className="glass p-6 rounded-3xl text-left">
         <div className="flex items-center gap-3 mb-4">
           <Lightbulb className="text-amber-500" size={24} />
-          <h3 className="text-lg font-bold">Suggestions for Improvement</h3>
+          <h3 className="text-lg font-bold text-nexus-text">Suggestions for Improvement</h3>
         </div>
         <ul className="space-y-3">
           {metrics.suggestions.map((suggestion, i) => (
             <li key={i} className="flex items-start gap-3">
-              <Target className="text-apti-primary mt-0.5" size={16} />
-              <span className="text-sm text-slate-600 dark:text-slate-400">{suggestion}</span>
+              <Target className="text-nexus-primary mt-0.5" size={16} />
+              <span className="text-sm text-slate-300">{suggestion}</span>
             </li>
           ))}
         </ul>
@@ -270,7 +270,7 @@ export function ResultsView() {
         <div className="glass p-6 rounded-3xl text-left">
           <div className="flex items-center gap-3 mb-4">
             <BarChart3 className="text-apti-primary" size={24} />
-            <h3 className="text-lg font-bold">Your Progress</h3>
+            <h3 className="text-lg font-bold text-nexus-text">Your Progress</h3>
           </div>
           <div className="flex items-end gap-2 h-24">
             {history.slice(0, 5).reverse().map((result, i) => {
@@ -295,21 +295,21 @@ export function ResultsView() {
       <div className="flex flex-wrap items-center justify-center gap-4">
         <button
           onClick={() => setView('calculator')}
-          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-8 py-4 rounded-2xl font-black hover:bg-slate-50 transition-all flex items-center gap-2"
+          className="glass px-8 py-4 rounded-2xl font-black text-nexus-text hover:border-nexus-primary/50 transition-all flex items-center gap-2"
         >
           <ArrowLeft size={18} /> Home
         </button>
         {lastWrong.length > 0 && (
           <button
             onClick={() => setView('review')}
-            className="bg-amber-500 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-amber-500/20 hover:scale-105 transition-all flex items-center gap-2"
+            className="bg-amber-400/90 text-black px-8 py-4 rounded-2xl font-black shadow-[0_0_20px_-4px_#fbbf24aa] hover:scale-105 transition-all flex items-center gap-2"
           >
             <BookOpen size={18} /> Review {lastWrong.length} Wrong
           </button>
         )}
         <button
           onClick={() => setView('calculator')}
-          className="bg-apti-primary text-white px-10 py-4 rounded-2xl font-black shadow-lg shadow-apti-primary/20 hover:scale-105 transition-all flex items-center gap-2"
+          className="bg-gradient-to-r from-nexus-primary to-nexus-secondary text-black px-10 py-4 rounded-2xl font-black uppercase tracking-widest shadow-[0_0_22px_-4px_#22d3eeaa] hover:scale-105 transition-all flex items-center gap-2"
         >
           <RotateCcw size={18} /> Another Round?
         </button>

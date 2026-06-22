@@ -8,12 +8,12 @@ export function ReviewView() {
   return (
     <div className="max-w-3xl mx-auto space-y-8 pb-20">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-display font-black flex items-center gap-3">
-          <BookOpen className="text-apti-primary" /> Review
+        <h2 className="text-3xl font-display font-black flex items-center gap-3 text-nexus-text neon-text">
+          <BookOpen className="text-nexus-primary" /> Review
         </h2>
         <button
           onClick={() => setView('results')}
-          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-6 py-3 rounded-2xl font-black hover:bg-slate-50 transition-all flex items-center gap-2"
+          className="glass px-6 py-3 rounded-2xl font-black text-nexus-text hover:border-nexus-primary/50 transition-all flex items-center gap-2"
         >
           <ArrowLeft size={18} /> Back to results
         </button>
@@ -35,7 +35,7 @@ export function ReviewView() {
               transition={{ delay: i * 0.04 }}
               className="glass p-7 rounded-3xl space-y-4"
             >
-              <p className="font-display font-bold text-lg leading-snug">{question.text}</p>
+              <p className="font-display font-bold text-lg leading-snug text-nexus-text">{question.text}</p>
 
               <div className="grid gap-2">
                 {question.options.map((opt, idx) => {
@@ -46,18 +46,18 @@ export function ReviewView() {
                       key={idx}
                       className={`flex items-center justify-between p-3 rounded-xl border ${
                         isAnswer
-                          ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20'
+                          ? 'border-nexus-success bg-nexus-success/15'
                           : isPicked
-                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                            : 'border-slate-100 dark:border-slate-800'
+                            ? 'border-rose-400 bg-rose-500/15'
+                            : 'border-white/10 bg-white/[0.03]'
                       }`}
                     >
-                      <span className="text-sm font-medium">
-                        <span className="font-bold mr-2">{String.fromCharCode(65 + idx)}.</span>
+                      <span className="text-sm font-medium text-nexus-text">
+                        <span className="font-bold mr-2 font-mono">{String.fromCharCode(65 + idx)}.</span>
                         {opt}
                       </span>
-                      {isAnswer && <CheckCircle2 size={16} className="text-emerald-500" />}
-                      {isPicked && !isAnswer && <XCircle size={16} className="text-red-500" />}
+                      {isAnswer && <CheckCircle2 size={16} className="text-nexus-success" />}
+                      {isPicked && !isAnswer && <XCircle size={16} className="text-rose-400" />}
                     </div>
                   )
                 })}
@@ -67,7 +67,7 @@ export function ReviewView() {
                 {selected == null || selected < 0 ? 'You skipped or ran out of time.' : 'Your answer was incorrect.'}
               </p>
               {question.explanation && (
-                <div className="text-sm bg-blue-50 dark:bg-blue-900/20 text-apti-primary rounded-xl p-3">
+                <div className="text-sm bg-nexus-primary/10 border border-nexus-primary/25 text-nexus-primary rounded-xl p-3">
                   <span className="font-bold">Why: </span>
                   {question.explanation}
                 </div>

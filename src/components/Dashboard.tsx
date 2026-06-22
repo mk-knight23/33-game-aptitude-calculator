@@ -89,29 +89,29 @@ export function Dashboard() {
         <motion.div
           whileHover={{ y: -5 }}
           onClick={() => setView('calculator')}
-          className="glass p-10 rounded-[3rem] border-2 border-transparent hover:border-apti-primary transition-all cursor-pointer group"
+          className="glass p-10 rounded-[3rem] hover:border-nexus-primary/60 transition-all cursor-pointer group"
         >
-          <div className="bg-blue-50 dark:bg-blue-900/20 w-16 h-16 rounded-2xl flex items-center justify-center text-apti-primary mb-8">
+          <div className="bg-nexus-primary/15 border border-nexus-primary/30 w-16 h-16 rounded-2xl flex items-center justify-center text-nexus-primary mb-8">
             <CalcIcon size={32} />
           </div>
-          <h3 className="text-3xl font-display font-black mb-2 flex items-center gap-2">
-            Scientific Calc <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+          <h3 className="text-3xl font-display font-black mb-2 flex items-center gap-2 text-nexus-text">
+            Scientific Calc <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity text-nexus-primary" />
           </h3>
-          <p className="text-slate-500 font-medium">Advanced mathematical operations for complex problem solving.</p>
+          <p className="text-slate-400 font-medium">Advanced mathematical operations for complex problem solving.</p>
         </motion.div>
 
         <motion.div
           whileHover={{ y: -5 }}
-          className="glass p-10 rounded-[3rem] border-2 border-transparent hover:border-apti-secondary transition-all"
+          className="glass p-10 rounded-[3rem] hover:border-nexus-secondary/60 transition-all"
         >
-          <div className="bg-purple-50 dark:bg-purple-900/20 w-16 h-16 rounded-2xl flex items-center justify-center text-apti-secondary mb-8">
+          <div className="bg-nexus-secondary/15 border border-nexus-secondary/30 w-16 h-16 rounded-2xl flex items-center justify-center text-nexus-secondary mb-8">
             <BrainCircuit size={32} />
           </div>
-          <h3 className="text-3xl font-display font-black mb-4">Start Assessment</h3>
+          <h3 className="text-3xl font-display font-black mb-4 text-nexus-text">Start Assessment</h3>
 
           {/* Mode selector */}
           <div className="mb-6">
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Game Mode</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 font-mono">Game Mode</p>
             <div className="grid grid-cols-3 gap-2">
               {MODES.map((m) => {
                 const Icon = m.icon
@@ -123,8 +123,8 @@ export function Dashboard() {
                     title={m.hint}
                     className={`p-3 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 ${
                       active
-                        ? 'border-apti-primary bg-apti-primary/10 text-apti-primary'
-                        : 'border-slate-100 dark:border-slate-800 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                        ? 'border-nexus-primary bg-nexus-primary/15 text-nexus-primary shadow-[0_0_16px_-4px_#22d3ee99]'
+                        : 'border-white/10 text-slate-400 hover:border-nexus-primary/40 hover:bg-white/5'
                     }`}
                   >
                     <Icon size={18} />
@@ -136,7 +136,7 @@ export function Dashboard() {
             <p className="text-[10px] text-slate-400 mt-2">{MODES.find((m) => m.id === mode)?.hint}</p>
           </div>
 
-          <p className="text-slate-500 font-medium mb-3 text-sm">Choose a category:</p>
+          <p className="text-slate-400 font-medium mb-3 text-sm">Choose a category:</p>
           <div className="space-y-3 max-h-[22rem] overflow-y-auto pr-1">
             {CATEGORIES.map((cat) => {
               const Icon = cat.icon
@@ -144,16 +144,16 @@ export function Dashboard() {
                 <button
                   key={cat.id}
                   onClick={() => handleStart(cat.id)}
-                  className="w-full p-4 rounded-2xl bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 hover:from-slate-100 dark:hover:from-slate-700 transition-all flex items-center gap-4 group/btn"
+                  className="w-full p-4 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-nexus-primary/40 hover:bg-nexus-primary/8 transition-all flex items-center gap-4 group/btn"
                 >
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white`}>
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${cat.color} flex items-center justify-center text-white shadow-lg`}>
                     <Icon size={20} />
                   </div>
                   <div className="flex-1 text-left">
-                    <p className="font-bold text-sm">{cat.name}</p>
-                    <p className="text-[10px] text-slate-500 uppercase tracking-wider">{cat.description}</p>
+                    <p className="font-bold text-sm text-nexus-text">{cat.name}</p>
+                    <p className="text-[10px] text-slate-400 uppercase tracking-wider">{cat.description}</p>
                   </div>
-                  <ArrowUpRight className="opacity-0 group-hover/btn:opacity-100 transition-opacity text-apti-primary" size={18} />
+                  <ArrowUpRight className="opacity-0 group-hover/btn:opacity-100 transition-opacity text-nexus-primary" size={18} />
                 </button>
               )
             })}
@@ -164,13 +164,13 @@ export function Dashboard() {
       {/* Recent Performance */}
       <section className="space-y-8">
         <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-display font-bold flex items-center gap-3">
-            <History className="text-apti-primary" /> Performance History
+          <h3 className="text-2xl font-display font-bold flex items-center gap-3 text-nexus-text">
+            <History className="text-nexus-primary" /> Performance History
           </h3>
           {history.length > 0 && (
             <button
               onClick={clearHistory}
-              className="text-xs font-black text-red-500 uppercase tracking-widest hover:underline flex items-center gap-2"
+              className="text-xs font-black text-rose-400 uppercase tracking-widest hover:underline flex items-center gap-2"
             >
               <Trash2 size={14} /> Clear All
             </button>
@@ -182,13 +182,13 @@ export function Dashboard() {
             {history.map((res) => (
               <div key={res.id} className="glass p-6 rounded-3xl flex flex-wrap items-center justify-between gap-6">
                 <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 flex items-center justify-center text-2xl font-black text-apti-primary">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-nexus-primary/20 to-nexus-secondary/20 border border-nexus-primary/30 flex items-center justify-center text-2xl font-black text-nexus-primary font-mono">
                     {Math.round((res.score / res.totalQuestions) * 100)}%
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg flex items-center gap-2">
+                    <h4 className="font-bold text-lg flex items-center gap-2 text-nexus-text">
                       {getCategoryLabel(res.category as CategoryType)}
-                      <span className="text-[10px] uppercase tracking-widest bg-apti-primary/10 text-apti-primary px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] uppercase tracking-widest bg-nexus-primary/15 text-nexus-primary px-2 py-0.5 rounded-full border border-nexus-primary/30">
                         {res.mode}
                       </span>
                     </h4>
@@ -202,9 +202,9 @@ export function Dashboard() {
                 <div className="flex items-center gap-8">
                   <div className="text-right">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Score</p>
-                    <p className="text-xl font-black">{res.score} / {res.totalQuestions}</p>
+                    <p className="text-xl font-black text-nexus-text font-mono">{res.score} / {res.totalQuestions}</p>
                   </div>
-                  <div className={`p-2 ${res.score / res.totalQuestions >= 0.7 ? 'bg-emerald-50 dark:bg-emerald-900/20 text-apti-accent' : 'bg-amber-50 dark:bg-amber-900/20 text-amber-500'} rounded-xl`}>
+                  <div className={`p-2 rounded-xl border ${res.score / res.totalQuestions >= 0.7 ? 'bg-nexus-accent/15 border-nexus-accent/30 text-nexus-accent' : 'bg-amber-400/10 border-amber-400/30 text-amber-300'}`}>
                     <Trophy size={20} />
                   </div>
                 </div>
@@ -212,8 +212,8 @@ export function Dashboard() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-slate-50 dark:bg-slate-900/30 rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-800">
-            <Zap className="mx-auto text-slate-300 mb-4" size={48} />
+          <div className="text-center py-20 bg-white/[0.03] rounded-[3rem] border-2 border-dashed border-white/15">
+            <Zap className="mx-auto text-nexus-primary/40 mb-4" size={48} />
             <p className="text-slate-400 font-bold">No tests taken yet. Your brain awaits.</p>
           </div>
         )}

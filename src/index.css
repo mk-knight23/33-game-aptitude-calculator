@@ -1,23 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-nexus-bg: #0f172a;
-  --color-nexus-card: #1e293b;
-  --color-nexus-primary: #06b6d4;
-  --color-nexus-secondary: #6366f1;
-  --color-nexus-accent: #e879f9;
-  --color-nexus-success: #10b981;
+  /* === Cyan / Violet Neural Palette === */
+  --color-nexus-bg: #0A0612;
+  --color-nexus-bg-alt: #0B0A14;
+  --color-nexus-card: #140E22;
+  --color-nexus-primary: #22D3EE;
+  --color-nexus-secondary: #A78BFA;
+  --color-nexus-accent: #E879F9;
+  --color-nexus-success: #34D399;
+  --color-nexus-text: #F5F3FF;
+
+  /* Aliases used across the app (math/test/results views) */
+  --color-apti-bg: #0A0612;
+  --color-apti-primary: #22D3EE;
+  --color-apti-secondary: #A78BFA;
+  --color-apti-accent: #E879F9;
+  --color-apti-success: #34D399;
 
   --font-mono: "JetBrains Mono", monospace;
   --font-display: "Orbitron", sans-serif;
 }
 
 :root {
-  --apti-bg: #fdfdfd;
-}
-
-.dark {
-  --apti-bg: #0a0a0a;
+  --apti-bg: #0A0612;
 }
 
 html {
@@ -28,42 +34,174 @@ body {
   @apply bg-nexus-bg text-slate-100 antialiased;
   margin: 0;
   min-height: 100vh;
-  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--color-nexus-text);
+  font-family: "JetBrains Mono", system-ui, sans-serif;
+  background-color: var(--color-nexus-bg);
 }
 
+/* ============================================================
+   Cinematic layered background
+   ============================================================ */
+.cinematic-root {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background-color: var(--color-nexus-bg);
+}
+
+/* Layer 2: media (video/img) */
+.cinematic-media {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -4;
+  opacity: 0.52;
+  pointer-events: none;
+}
+
+/* Layer 3: theme-tinted dark gradient overlay */
+.cinematic-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(34, 211, 238, 0.18), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 100% 100%, rgba(167, 139, 250, 0.20), transparent 55%),
+    linear-gradient(180deg, rgba(10, 6, 18, 0.72) 0%, rgba(11, 10, 20, 0.86) 55%, rgba(10, 6, 18, 0.96) 100%);
+}
+
+/* Layer 4a: scanlines */
+.cinematic-scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Layer 4b: grid + corner glow */
+.cinematic-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 30%, black 30%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 30%, black 30%, transparent 90%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-scanlines { display: none; }
+}
+
+/* ============================================================
+   Neon glass + components
+   ============================================================ */
 @utility glass {
-  @apply bg-nexus-card/70 backdrop-blur-md border border-white/10;
+  @apply backdrop-blur-xl border;
+  background: rgba(20, 14, 34, 0.72);
+  border-color: rgba(34, 211, 238, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(167, 139, 250, 0.08) inset,
+    0 18px 50px -20px rgba(0, 0, 0, 0.8),
+    0 0 28px -10px rgba(34, 211, 238, 0.35);
 }
 
+@utility glass-strong {
+  @apply backdrop-blur-2xl border;
+  background: rgba(13, 9, 24, 0.86);
+  border-color: rgba(34, 211, 238, 0.28);
+  box-shadow:
+    0 0 0 1px rgba(167, 139, 250, 0.10) inset,
+    0 24px 60px -24px rgba(0, 0, 0, 0.9),
+    0 0 36px -12px rgba(167, 139, 250, 0.4);
+}
+
+@utility neon-text {
+  text-shadow: 0 0 18px rgba(34, 211, 238, 0.55), 0 0 40px rgba(167, 139, 250, 0.35);
+}
+
+/* Calculator buttons */
 @utility calc-btn {
   @apply h-14 rounded-2xl font-bold transition-all active:scale-95 flex items-center justify-center;
+  font-family: var(--font-mono);
 }
 
 @utility calc-btn-num {
-  @apply bg-nexus-card text-slate-300 hover:bg-white/10;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-nexus-text);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.calc-btn-num:hover {
+  background: rgba(34, 211, 238, 0.12);
+  border-color: rgba(34, 211, 238, 0.4);
 }
 
 @utility calc-btn-op {
-  @apply bg-nexus-secondary/10 text-nexus-secondary hover:bg-nexus-secondary/20;
+  background: rgba(167, 139, 250, 0.14);
+  color: var(--color-nexus-secondary);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+}
+.calc-btn-op:hover {
+  background: rgba(167, 139, 250, 0.26);
+  box-shadow: 0 0 16px -2px rgba(167, 139, 250, 0.5);
 }
 
 @utility calc-btn-action {
-  @apply bg-nexus-primary text-black hover:bg-white shadow-[0_0_15px_#06b6d466];
+  background: linear-gradient(135deg, var(--color-nexus-primary), var(--color-nexus-secondary));
+  color: #060312;
+  box-shadow: 0 0 20px -2px rgba(34, 211, 238, 0.6);
+}
+.calc-btn-action:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 0 28px 0 rgba(34, 211, 238, 0.75);
 }
 
 @utility calc-btn-scientific {
-  @apply h-10 rounded-xl font-semibold text-slate-400 bg-nexus-card hover:bg-white/5 transition-all active:scale-95;
+  @apply h-10 rounded-xl font-semibold transition-all active:scale-95;
+  background: rgba(255, 255, 255, 0.04);
+  color: #C4B5FD;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.calc-btn-scientific:hover {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--color-nexus-primary);
 }
 
 /* Navigation link styles */
 .nav-link {
-  @apply text-slate-500 hover:text-white transition-colors duration-200;
+  @apply transition-colors duration-200;
+  color: rgba(245, 243, 255, 0.5);
 }
-
+.nav-link:hover { color: var(--color-nexus-text); }
 .nav-link.active {
-  @apply text-nexus-primary font-bold;
+  @apply font-bold;
+  color: var(--color-nexus-primary);
+}
+.nav-link.disabled {
+  color: rgba(245, 243, 255, 0.25);
+  cursor: not-allowed;
 }
 
-.nav-link.disabled {
-  @apply text-slate-600 cursor-not-allowed;
+/* Thin neon scrollbars inside panels */
+.glass ::-webkit-scrollbar,
+.glass-strong ::-webkit-scrollbar { width: 6px; height: 6px; }
+.glass ::-webkit-scrollbar-thumb,
+.glass-strong ::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.35);
+  border-radius: 9999px;
 }

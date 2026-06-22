@@ -6,7 +6,7 @@ import { Outlet } from 'react-router'
  */
 export default function App() {
   return (
-    <div className="min-h-screen bg-nexus-bg text-white">
+    <div className="min-h-screen bg-nexus-bg text-nexus-text">
       <Outlet />
     </div>
   )

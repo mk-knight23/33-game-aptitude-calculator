@@ -124,25 +124,25 @@ export function Calculator() {
   ]
 
   return (
-    <div className="max-w-lg mx-auto glass p-6 md:p-8 rounded-[2.5rem] shadow-2xl space-y-6">
+    <div className="max-w-lg mx-auto glass p-6 md:p-8 rounded-[2.5rem] space-y-6">
       {/* Mode Toggle & Memory Indicator */}
       <div className="flex justify-between items-center">
         <button
           onClick={() => setMode(mode === 'basic' ? 'scientific' : 'basic')}
-          className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-500 transition-colors flex items-center gap-1"
+          className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-nexus-primary transition-colors flex items-center gap-1"
         >
           {mode === 'basic' ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
           {mode === 'basic' ? 'Basic' : 'Scientific'}
         </button>
         {memory !== null && (
-          <span className="text-[10px] font-bold uppercase text-blue-500">M: {memory.toFixed(2)}</span>
+          <span className="text-[10px] font-bold uppercase text-nexus-secondary font-mono">M: {memory.toFixed(2)}</span>
         )}
       </div>
 
       {/* Display */}
-      <div className="bg-slate-50 dark:bg-slate-900/50 p-4 md:p-6 rounded-3xl text-right space-y-2 min-h-[100px] md:min-h-[120px] flex flex-col justify-end">
+      <div className="bg-black/40 border border-nexus-primary/20 p-4 md:p-6 rounded-3xl text-right space-y-2 min-h-[100px] md:min-h-[120px] flex flex-col justify-end">
         <p className="text-xs md:text-sm font-mono text-slate-400 overflow-hidden whitespace-nowrap">{expression || '0'}</p>
-        <p className="text-2xl md:text-4xl font-display font-black text-blue-600 dark:text-blue-400 truncate">
+        <p className="text-2xl md:text-4xl font-mono font-bold text-nexus-primary truncate neon-text">
           {result || expression || '0'}
         </p>
       </div>
@@ -175,7 +175,7 @@ export function Calculator() {
               "calc-btn",
               ['/', '*', '-', '+', '(', ')'].includes(btn) ? "calc-btn-op" :
               btn === '=' ? "calc-btn-action" :
-              btn === 'C' ? "bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400" :
+              btn === 'C' ? "bg-rose-500/15 border border-rose-400/30 text-rose-300 hover:bg-rose-500/25" :
               "calc-btn-num"
             )}
           >
@@ -199,8 +199,8 @@ export function Calculator() {
 
       {/* History */}
       {history.length > 0 && mode === 'scientific' && (
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 max-h-32 overflow-y-auto">
-          <p className="text-[10px] font-bold uppercase text-slate-500 mb-2">Recent Calculations</p>
+        <div className="pt-4 border-t border-white/10 max-h-32 overflow-y-auto">
+          <p className="text-[10px] font-bold uppercase text-slate-400 mb-2">Recent Calculations</p>
           <div className="space-y-1">
             {history.slice(0, 5).map((entry, i) => (
               <p
@@ -211,7 +211,7 @@ export function Calculator() {
                     setExpression(prev => prev + result)
                   }
                 }}
-                className="text-xs font-mono text-slate-600 dark:text-slate-400 cursor-pointer hover:text-blue-500 truncate"
+                className="text-xs font-mono text-slate-400 cursor-pointer hover:text-nexus-primary truncate"
               >
                 {entry}
               </p>
@@ -220,8 +220,8 @@ export function Calculator() {
         </div>
       )}
 
-      <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-        <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 text-center flex items-center justify-center gap-2">
+      <div className="pt-4 border-t border-white/10">
+        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 text-center flex items-center justify-center gap-2 font-mono">
           <Hash size={12} /> Powered by Math.js
         </p>
       </div>
