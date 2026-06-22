@@ -4,6 +4,7 @@ import { cn } from '@/utils/cn'
 import { Calculator } from '../components/calculator/Calculator'
 import { Dashboard } from '../components/Dashboard'
 import { TestEngine } from '../components/test/TestEngine'
+import { ReviewView } from '../components/test/ReviewView'
 import { ResultsView } from '../components/ResultsView'
 import { Calculator as CalcIcon, BrainCircuit } from 'lucide-react'
 
@@ -98,6 +99,17 @@ export default function Game() {
               exit={{ opacity: 0 }}
             >
               <ResultsView />
+            </motion.div>
+          )}
+
+          {view === 'review' && (
+            <motion.div
+              key="review"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ReviewView />
             </motion.div>
           )}
         </AnimatePresence>

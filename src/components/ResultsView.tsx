@@ -12,12 +12,13 @@ import {
   BarChart3,
   Star,
   Zap,
-  Crown
+  Crown,
+  BookOpen
 } from 'lucide-react'
 import { useMemo, useEffect, useState } from 'react'
 
 export function ResultsView() {
-  const { history, setView } = useAptiStore()
+  const { history, setView, lastWrong } = useAptiStore()
   const latest = history[0]
   
   // V2: Mastery tracking
@@ -296,8 +297,16 @@ export function ResultsView() {
           onClick={() => setView('calculator')}
           className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-8 py-4 rounded-2xl font-black hover:bg-slate-50 transition-all flex items-center gap-2"
         >
-          <ArrowLeft size={18} /> ← CALC
+          <ArrowLeft size={18} /> Home
         </button>
+        {lastWrong.length > 0 && (
+          <button
+            onClick={() => setView('review')}
+            className="bg-amber-500 text-white px-8 py-4 rounded-2xl font-black shadow-lg shadow-amber-500/20 hover:scale-105 transition-all flex items-center gap-2"
+          >
+            <BookOpen size={18} /> Review {lastWrong.length} Wrong
+          </button>
+        )}
         <button
           onClick={() => setView('calculator')}
           className="bg-apti-primary text-white px-10 py-4 rounded-2xl font-black shadow-lg shadow-apti-primary/20 hover:scale-105 transition-all flex items-center gap-2"
