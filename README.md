@@ -77,13 +77,9 @@ Tests run on Vitest with a jsdom environment:
 - `src/stores/aptiStore.test.ts` — start/answer/finish flow, survival lives, stats
 - `src/data/questions.test.ts` — question-bank integrity (unique ids, valid answer indices, category/difficulty coverage)
 
-CI (`.github/workflows/ci.yml`) runs type-check, tests, build, and a security
-audit on push and pull request.
-
 ## Deploy
 
-The build is a fully static SPA in `dist/` (`base: './'`), deployable to any
-static host (Vercel, Netlify, GitHub Pages, etc.):
+The build is a fully static SPA in `dist/` (`base: './'`), deployed on Vercel:
 
 ```bash
 npm run build
